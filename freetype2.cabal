@@ -1,5 +1,5 @@
 Name:                freetype2
-Version:             0.1.1
+Version:             2.5.3.0
 Synopsis:            Haskell binding for FreeType 2 library
 Description:         Wrapper around FreeType 2 library.  Relevant
                      exerpts from the FreeType 2 website:
@@ -91,13 +91,18 @@ Copyright:           Copyright Jason Dagit 2011
 Category:            Graphics
 Build-type:          Simple
 Extra-source-files:  objs/ftmodule.h
+                     harfbuzz/src/*.hh
+                     harfbuzz/src/*.cc
+                     harfbuzz/src/*.h
                      include/*.h
-                     include/freetype/*.h
-                     include/freetype/config/*.h
-                     include/freetype/internal/*.h
-                     include/freetype/internal/services/*.h
+                     include/internal/*.h
+                     include/internal/services/*.h
+                     src/autofit/*.h
+                     src/autofit/*.c
                      src/base/*.h
                      src/base/*.c
+                     src/bdf/*.h
+                     src/bdf/*.c
                      src/truetype/*.h
                      src/truetype/*.c
                      src/type1/*.h
@@ -137,23 +142,79 @@ Extra-source-files:  objs/ftmodule.h
                      src/psnames/*.h
                      src/psnames/*.c
 
-Cabal-version:       >=1.8
+Cabal-version:       >=1.20
 
-Flag examples
-  Description: Build example programs
-  Default: False
+Executable test
+  default-language: Haskell2010
+  build-depends:
+    base, freetype2, JuicyPixels, bytestring
+  main-is: test-harfbuzz.hs
+  ghc-options: 
+             dist/build/harfbuzz/src/hb-blob.o
+             dist/build/harfbuzz/src/hb-buffer.o
+             dist/build/harfbuzz/src/hb-buffer-serialize.o
+             dist/build/harfbuzz/src/hb-common.o
+             dist/build/harfbuzz/src/hb-face.o
+             dist/build/harfbuzz/src/hb-font.o
+             dist/build/harfbuzz/src/hb-ft.o
+             dist/build/harfbuzz/src/hb-unicode.o
+             dist/build/harfbuzz/src/hb-shape.o
+             dist/build/harfbuzz/src/hb-shaper.o
+             dist/build/harfbuzz/src/hb-shape-plan.o
+             dist/build/harfbuzz/src/hb-warning.o
 
-Executable freetype-example1
+             dist/build/src/base/ftsystem.o
+             dist/build/src/base/ftdebug.o
+             dist/build/src/base/ftinit.o
+             dist/build/src/base/ftbase.o
+             dist/build/src/base/ftbbox.o
+             dist/build/src/base/ftbdf.o
+             dist/build/src/base/ftbitmap.o
+             dist/build/src/base/ftcid.o
+             dist/build/src/base/ftfstype.o
+             dist/build/src/base/ftgasp.o
+             dist/build/src/base/ftglyph.o
+             dist/build/src/base/ftgxval.o
+             dist/build/src/base/ftlcdfil.o
+             dist/build/src/base/ftmm.o
+             dist/build/src/base/ftotval.o
+             dist/build/src/base/ftpatent.o
+             dist/build/src/base/ftpfr.o
+             dist/build/src/base/ftstroke.o
+             dist/build/src/base/ftsynth.o
+             dist/build/src/base/fttype1.o
+             dist/build/src/base/ftwinfnt.o
+             dist/build/src/base/ftxf86.o
 
-  if flag(examples)
-    Buildable: True
-    Build-depends: base > 3 && < 5, freetype2, array,
-                   missing-foreign >= 0.1.1 && < 0.2.0
-  else
-    Buildable: False
-  Main-is:       Main.hs
+             dist/build/src/truetype/truetype.o
+             dist/build/src/type1/type1.o
+             dist/build/src/cff/cff.o
+             dist/build/src/cid/type1cid.o
+             dist/build/src/pfr/pfr.o
+             dist/build/src/type42/type42.o
+             dist/build/src/winfonts/winfnt.o
+             dist/build/src/pcf/pcf.o
+             dist/build/src/bdf/bdf.o
+             dist/build/src/sfnt/sfnt.o
+             dist/build/src/autofit/autofit.o
+             dist/build/src/pshinter/pshinter.o
+             dist/build/src/raster/raster.o
+             dist/build/src/smooth/smooth.o
+             dist/build/src/cache/ftcache.o
+             dist/build/src/gzip/ftgzip.o
+             dist/build/src/lzw/ftlzw.o
+             dist/build/src/psaux/psaux.o
+             dist/build/src/psnames/psmodule.o
 
 Library
+  default-language: Haskell2010
+  default-extensions:
+    ForeignFunctionInterface
+  Build-tools: hsc2hs
+
+  Build-depends: base > 3, 
+                 bindings-DSL
+
   -- Modules exported by the library.
   Exposed-modules: Graphics.Rendering.FreeType.Internal
                    Graphics.Rendering.FreeType.Internal.BBox
@@ -187,17 +248,33 @@ Library
                    Graphics.Rendering.FreeType.Internal.SubGlyph
                    Graphics.Rendering.FreeType.Internal.Vector
 
-  -- Packages needed in order to build this package.
-  Build-depends: base > 3 && < 5
+                   Bindings.Harfbuzz.Hb
+                   Bindings.Harfbuzz.HbBlob
+                   Bindings.Harfbuzz.HbBuffer
+                   Bindings.Harfbuzz.HbCommon
+                   Bindings.Harfbuzz.HbFace
+                   Bindings.Harfbuzz.HbFont
+                   Bindings.Harfbuzz.HbFt
+                   Bindings.Harfbuzz.HbSet
+                   Bindings.Harfbuzz.HbShape
+                   Bindings.Harfbuzz.HbUnicode
+                   Bindings.Harfbuzz.HbVersion
+  -- Modules included in this library but not exported.
+  -- other-modules:       
+  
+  -- LANGUAGE extensions used by modules in this package.
+  -- other-extensions:    
+
 
   -- Modules not exported by this package.
   -- Other-modules:       
 
   -- Extra tools (e.g. alex, hsc2hs, ...) needed to build the source.
+  x-cc-name: g++
   Build-tools: hsc2hs
   ghc-options: -Wall
-  include-dirs: objs include include/freetype/config
-                include/freetype
+  include-dirs: objs include include/config
+                include/
                 src/base
                 src/truetype
                 src/type1
@@ -218,11 +295,17 @@ Library
                 src/lzw
                 src/psaux
                 src/psnames
+                harfbuzz/src
+                ./
 
   cc-options: -DFT_CONFIG_CONFIG_H=<ftconfig.h>
               -DFT2_BUILD_LIBRARY
               -DFT_CONFIG_MODULES_H=<ftmodule.h>
               -DDARWIN_NO_CARBON
+              -DHAVE_CONFIG
+              -fno-exceptions
+              -fno-rtti
+              -fPIC -DPIC
 
   c-sources:
              src/base/ftsystem.c
@@ -266,6 +349,19 @@ Library
              src/lzw/ftlzw.c
              src/psaux/psaux.c
              src/psnames/psmodule.c
+
+             harfbuzz/src/hb-blob.cc
+             harfbuzz/src/hb-buffer.cc
+             harfbuzz/src/hb-buffer-serialize.cc
+             harfbuzz/src/hb-common.cc
+             harfbuzz/src/hb-face.cc
+             harfbuzz/src/hb-font.cc
+             harfbuzz/src/hb-ft.cc
+             harfbuzz/src/hb-unicode.cc
+             harfbuzz/src/hb-shape.cc
+             harfbuzz/src/hb-shaper.cc
+             harfbuzz/src/hb-shape-plan.cc
+             harfbuzz/src/hb-warning.cc
 
 source-repository head
   type: git
