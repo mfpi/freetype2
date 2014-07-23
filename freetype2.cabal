@@ -159,6 +159,7 @@ Executable test
              dist/build/harfbuzz/src/hb-ft.o
              dist/build/harfbuzz/src/hb-unicode.o
              dist/build/harfbuzz/src/hb-shape.o
+             dist/build/harfbuzz/src/hb-set.o
              dist/build/harfbuzz/src/hb-shaper.o
              dist/build/harfbuzz/src/hb-shape-plan.o
              dist/build/harfbuzz/src/hb-warning.o
@@ -358,6 +359,7 @@ Library
              harfbuzz/src/hb-font.cc
              harfbuzz/src/hb-ft.cc
              harfbuzz/src/hb-unicode.cc
+             harfbuzz/src/hb-set.cc
              harfbuzz/src/hb-shape.cc
              harfbuzz/src/hb-shaper.cc
              harfbuzz/src/hb-shape-plan.cc
