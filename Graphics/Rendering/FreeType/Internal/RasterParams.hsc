@@ -25,7 +25,7 @@ import Graphics.Rendering.FreeType.Internal.Span
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
-#include "freetype/ftimage.h"
+#include "ftimage.h"
 
 data FT_Raster_Params = FT_Raster_Params
   { target      :: Ptr FT_Bitmap

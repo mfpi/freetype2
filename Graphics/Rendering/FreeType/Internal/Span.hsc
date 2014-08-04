@@ -12,7 +12,7 @@ import Foreign.C.Types
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
-#include "freetype/ftimage.h"
+#include "ftimage.h"
 
 data FT_Span = FT_Span
   { x        :: CShort

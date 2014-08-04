@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -fno-warn-unused-imports #-}
 #include <bindings.dsl.h>
-#include "harfbuzz/hb.h"
+#include "hb.h"
 #include <ft2build.h>
 module Bindings.Harfbuzz.HbFt where
 import Foreign.Ptr

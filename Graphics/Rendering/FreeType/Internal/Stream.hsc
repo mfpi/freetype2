@@ -29,7 +29,7 @@ import Graphics.Rendering.FreeType.Internal.Memory
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
-#include "freetype/ftsystem.h"
+#include "ftsystem.h"
 
 -- We don't have FILE* in Haskell, so we cheat and only
 -- consider the long part of the FT_StreamDesc union...

@@ -21,7 +21,7 @@ import Graphics.Rendering.FreeType.Internal.PrimitiveTypes
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
-#include "freetype/ftimage.h"
+#include "ftimage.h"
 
 data FT_Outline = FT_Outline
   { n_contours :: CShort

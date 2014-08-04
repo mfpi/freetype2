@@ -19,7 +19,7 @@ import qualified Graphics.Rendering.FreeType.Internal.Vector  as V
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
-#include "freetype/ftglyph.h"
+#include "ftglyph.h"
 
 data FT_GlyphRec_
 type FT_Glyph = Ptr FT_GlyphRec_
