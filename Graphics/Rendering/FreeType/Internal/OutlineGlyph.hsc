@@ -14,7 +14,7 @@ import Graphics.Rendering.FreeType.Internal.Outline
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
-#include "freetype/ftglyph.h"
+#include "ftglyph.h"
 
 newtype FT_OutlineGlyph = FT_OutlineGlyph FT_Glyph
 

@@ -12,7 +12,7 @@ import Foreign
 
 #include "ft2build.h"
 #include FT_FREETYPE_H
-#include "freetype/ftglyph.h"
+#include "ftglyph.h"
 
 import Graphics.Rendering.FreeType.Internal.PrimitiveTypes
 import Graphics.Rendering.FreeType.Internal.Bitmap

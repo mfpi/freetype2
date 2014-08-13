@@ -13,7 +13,7 @@ import Graphics.Rendering.FreeType.Internal.PrimitiveTypes
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
-#include "freetype/ftimage.h"
+#include "ftimage.h"
 
 data FT_BBox = FT_BBox
   { xMin :: FT_Pos

@@ -10,7 +10,7 @@ import Foreign.C.Types
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
-#include "freetype/ftoutln.h"
+#include "ftoutln.h"
 
 ft_LOAD_DEFAULT :: FT_Int32
 ft_LOAD_DEFAULT = #const FT_LOAD_DEFAULT
