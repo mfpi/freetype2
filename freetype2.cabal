@@ -90,57 +90,6 @@ Maintainer:          Jason Dagit <dagitj@gmail.com>
 Copyright:           Copyright Jason Dagit 2011
 Category:            Graphics
 Build-type:          Simple
-Extra-source-files:  objs/ftmodule.h
-                     harfbuzz/src/*.hh
-                     harfbuzz/src/*.cc
-                     harfbuzz/src/*.h
-                     include/*.h
-                     include/internal/*.h
-                     include/internal/services/*.h
-                     src/autofit/*.h
-                     src/autofit/*.c
-                     src/base/*.h
-                     src/base/*.c
-                     src/bdf/*.h
-                     src/bdf/*.c
-                     src/truetype/*.h
-                     src/truetype/*.c
-                     src/type1/*.h
-                     src/type1/*.c
-                     src/cff/*.h
-                     src/cff/*.c
-                     src/cid/*.h
-                     src/cid/*.c
-                     src/pfr/*.h
-                     src/pfr/*.c
-                     src/type42/*.h
-                     src/type42/*.c
-                     src/winfonts/*.h
-                     src/winfonts/*.c
-                     src/pcf/*.h
-                     src/pcf/*.c
-                     src/bdf/*.h
-                     src/bdf/*.c
-                     src/sfnt/*.h
-                     src/sfnt/*.c
-                     src/autofit/*.h
-                     src/autofit/*.c
-                     src/pshinter/*.h
-                     src/pshinter/*.c
-                     src/raster/*.h
-                     src/raster/*.c
-                     src/smooth/*.h
-                     src/smooth/*.c
-                     src/cache/*.h
-                     src/cache/*.c
-                     src/gzip/*.h
-                     src/gzip/*.c
-                     src/lzw/*.h
-                     src/lzw/*.c
-                     src/psaux/*.h
-                     src/psaux/*.c
-                     src/psnames/*.h
-                     src/psnames/*.c
 
 Cabal-version:       >=1.20
 
@@ -149,63 +98,8 @@ Executable test
   build-depends:
     base, freetype2, JuicyPixels, bytestring
   main-is: test-harfbuzz.hs
-  ghc-options: 
-             dist/build/harfbuzz/src/hb-blob.o
-             dist/build/harfbuzz/src/hb-buffer.o
-             dist/build/harfbuzz/src/hb-buffer-serialize.o
-             dist/build/harfbuzz/src/hb-common.o
-             dist/build/harfbuzz/src/hb-face.o
-             dist/build/harfbuzz/src/hb-font.o
-             dist/build/harfbuzz/src/hb-ft.o
-             dist/build/harfbuzz/src/hb-unicode.o
-             dist/build/harfbuzz/src/hb-shape.o
-             dist/build/harfbuzz/src/hb-set.o
-             dist/build/harfbuzz/src/hb-shaper.o
-             dist/build/harfbuzz/src/hb-shape-plan.o
-             dist/build/harfbuzz/src/hb-warning.o
-
-             dist/build/src/base/ftsystem.o
-             dist/build/src/base/ftdebug.o
-             dist/build/src/base/ftinit.o
-             dist/build/src/base/ftbase.o
-             dist/build/src/base/ftbbox.o
-             dist/build/src/base/ftbdf.o
-             dist/build/src/base/ftbitmap.o
-             dist/build/src/base/ftcid.o
-             dist/build/src/base/ftfstype.o
-             dist/build/src/base/ftgasp.o
-             dist/build/src/base/ftglyph.o
-             dist/build/src/base/ftgxval.o
-             dist/build/src/base/ftlcdfil.o
-             dist/build/src/base/ftmm.o
-             dist/build/src/base/ftotval.o
-             dist/build/src/base/ftpatent.o
-             dist/build/src/base/ftpfr.o
-             dist/build/src/base/ftstroke.o
-             dist/build/src/base/ftsynth.o
-             dist/build/src/base/fttype1.o
-             dist/build/src/base/ftwinfnt.o
-             dist/build/src/base/ftxf86.o
-
-             dist/build/src/truetype/truetype.o
-             dist/build/src/type1/type1.o
-             dist/build/src/cff/cff.o
-             dist/build/src/cid/type1cid.o
-             dist/build/src/pfr/pfr.o
-             dist/build/src/type42/type42.o
-             dist/build/src/winfonts/winfnt.o
-             dist/build/src/pcf/pcf.o
-             dist/build/src/bdf/bdf.o
-             dist/build/src/sfnt/sfnt.o
-             dist/build/src/autofit/autofit.o
-             dist/build/src/pshinter/pshinter.o
-             dist/build/src/raster/raster.o
-             dist/build/src/smooth/smooth.o
-             dist/build/src/cache/ftcache.o
-             dist/build/src/gzip/ftgzip.o
-             dist/build/src/lzw/ftlzw.o
-             dist/build/src/psaux/psaux.o
-             dist/build/src/psnames/psmodule.o
+  extra-lib-dirs: ./
+             
 
 Library
   default-language: Haskell2010
@@ -271,99 +165,11 @@ Library
   -- Other-modules:       
 
   -- Extra tools (e.g. alex, hsc2hs, ...) needed to build the source.
-  x-cc-name: g++
   Build-tools: hsc2hs
   ghc-options: -Wall
-  include-dirs: objs include include/config
-                include/
-                src/base
-                src/truetype
-                src/type1
-                src/cff
-                src/cid
-                src/pfr
-                src/type42
-                src/winfonts
-                src/pcf
-                src/bdf
-                src/sfnt
-                src/autofit
-                src/pshinter
-                src/raster
-                src/smooth
-                src/cache
-                src/gzip
-                src/lzw
-                src/psaux
-                src/psnames
-                harfbuzz/src
-                ./
-
-  cc-options: -DFT_CONFIG_CONFIG_H=<ftconfig.h>
-              -DFT2_BUILD_LIBRARY
-              -DFT_CONFIG_MODULES_H=<ftmodule.h>
-              -DDARWIN_NO_CARBON
-              -DHAVE_CONFIG
-              -fno-exceptions
-              -fno-rtti
-              -fPIC -DPIC
-
-  c-sources:
-             src/base/ftsystem.c
-             src/base/ftdebug.c
-             src/base/ftinit.c
-             src/base/ftbase.c
-             src/base/ftbbox.c
-             src/base/ftbdf.c
-             src/base/ftbitmap.c
-             src/base/ftcid.c
-             src/base/ftfstype.c
-             src/base/ftgasp.c
-             src/base/ftglyph.c
-             src/base/ftgxval.c
-             src/base/ftlcdfil.c
-             src/base/ftmm.c
-             src/base/ftotval.c
-             src/base/ftpatent.c
-             src/base/ftpfr.c
-             src/base/ftstroke.c
-             src/base/ftsynth.c
-             src/base/fttype1.c
-             src/base/ftwinfnt.c
-             src/base/ftxf86.c
-             src/truetype/truetype.c
-             src/type1/type1.c
-             src/cff/cff.c
-             src/cid/type1cid.c
-             src/pfr/pfr.c
-             src/type42/type42.c
-             src/winfonts/winfnt.c
-             src/pcf/pcf.c
-             src/bdf/bdf.c
-             src/sfnt/sfnt.c
-             src/autofit/autofit.c
-             src/pshinter/pshinter.c
-             src/raster/raster.c
-             src/smooth/smooth.c
-             src/cache/ftcache.c
-             src/gzip/ftgzip.c
-             src/lzw/ftlzw.c
-             src/psaux/psaux.c
-             src/psnames/psmodule.c
-
-             harfbuzz/src/hb-blob.cc
-             harfbuzz/src/hb-buffer.cc
-             harfbuzz/src/hb-buffer-serialize.cc
-             harfbuzz/src/hb-common.cc
-             harfbuzz/src/hb-face.cc
-             harfbuzz/src/hb-font.cc
-             harfbuzz/src/hb-ft.cc
-             harfbuzz/src/hb-unicode.cc
-             harfbuzz/src/hb-set.cc
-             harfbuzz/src/hb-shape.cc
-             harfbuzz/src/hb-shaper.cc
-             harfbuzz/src/hb-shape-plan.cc
-             harfbuzz/src/hb-warning.cc
+  pkgconfig-depends:
+        freetype2,
+        harfbuzz
 
 source-repository head
   type: git

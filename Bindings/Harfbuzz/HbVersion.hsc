@@ -8,4 +8,4 @@ import Foreign.Ptr
 import Bindings.Harfbuzz.HbCommon
 #ccall hb_version , Ptr CUInt -> Ptr CUInt -> Ptr CUInt -> IO ()
 #ccall hb_version_string , IO CString
-#ccall hb_version_atleast , CUInt -> CUInt -> CUInt -> IO CInt
+-- #ccall hb_version_atleast , CUInt -> CUInt -> CUInt -> IO CInt

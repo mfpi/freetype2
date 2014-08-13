@@ -10,7 +10,7 @@ import Graphics.Rendering.FreeType.Internal.PrimitiveTypes
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
-#include "internal/ftobjs.h"
+-- #include "internal/ftobjs.h"
 
 data FT_Matrix = FT_Matrix
   { xx, xy :: FT_Fixed
