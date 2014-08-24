@@ -93,13 +93,6 @@ Build-type:          Simple
 
 Cabal-version:       >=1.20
 
-Executable test
-  default-language: Haskell2010
-  build-depends:
-    base, freetype2, JuicyPixels, bytestring
-  main-is: test-harfbuzz.hs
-  extra-lib-dirs: ./
-             
 
 Library
   default-language: Haskell2010
@@ -143,17 +136,17 @@ Library
                    Graphics.Rendering.FreeType.Internal.SubGlyph
                    Graphics.Rendering.FreeType.Internal.Vector
 
-                   Bindings.Harfbuzz.Hb
-                   Bindings.Harfbuzz.HbBlob
-                   Bindings.Harfbuzz.HbBuffer
-                   Bindings.Harfbuzz.HbCommon
-                   Bindings.Harfbuzz.HbFace
-                   Bindings.Harfbuzz.HbFont
-                   Bindings.Harfbuzz.HbFt
-                   Bindings.Harfbuzz.HbSet
-                   Bindings.Harfbuzz.HbShape
-                   Bindings.Harfbuzz.HbUnicode
-                   Bindings.Harfbuzz.HbVersion
+                   -- Bindings.Harfbuzz.Hb
+                   -- Bindings.Harfbuzz.HbBlob
+                   -- Bindings.Harfbuzz.HbBuffer
+                   -- Bindings.Harfbuzz.HbCommon
+                   -- Bindings.Harfbuzz.HbFace
+                   -- Bindings.Harfbuzz.HbFont
+                   -- Bindings.Harfbuzz.HbFt
+                   -- Bindings.Harfbuzz.HbSet
+                   -- Bindings.Harfbuzz.HbShape
+                   -- Bindings.Harfbuzz.HbUnicode
+                   -- Bindings.Harfbuzz.HbVersion
   -- Modules included in this library but not exported.
   -- other-modules:       
   
@@ -168,8 +161,7 @@ Library
   Build-tools: hsc2hs
   ghc-options: -Wall
   pkgconfig-depends:
-        freetype2,
-        harfbuzz
+        freetype2
 
 source-repository head
   type: git
